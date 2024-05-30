@@ -1,0 +1,26 @@
+Utility for converting RA_Common automations calls
+
+Parameter: 'AutomationSetId'
+Parameter: 'FilePath'
+Parameter: 'OldMethodName'
+Parameter: 'NewMethodName'
+
+-Open [FilePath]
+-Add '<Dependency Id="[AutomationSetId]" IsUsed="True" />' inside the dependencies node
+
+-For each node where InstanceName is [OldMethodName]
+	-Change InstanceName value to RA_Common
+	-Change DisplayName value to [NewMethodName]
+	-Remove everything except ConnectionBlock on the ConnectionBlock line
+
+-For each node where ComponentName is [OldMethodName]
+	-Change ComponentName value to RA_Common
+	-Change DisplayName value to [NewMethodName]
+	-Change InstanceTypeName value to OpenSpan.Automation.AutomatorSet
+	-Add <EntryPointAutomationId Value="[ID]" /> where [ID] is the value of InstanceUniqueId
+	-Change InstanceUniqueId value to [AutomationSetId]
+	-Change MemberDetails value to .[NewMethodName]
+	-Change MemberName value to [NewMethodName]
+
+
+
