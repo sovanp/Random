@@ -5,32 +5,27 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Ensure the correct number of arguments are provided
         if (args.Length != 4)
         {
             Console.WriteLine("Usage: dotnet run <FilePath> <OldMethodName> <NewMethodName> <AutomationSetId>");
             return;
         }
 
-        // Assign arguments to variables
         string filePath = args[0];
         string oldMethodName = args[1];
         string newMethodName = args[2];
         string automationSetId = args[3];
 
-        // Load the XML document
         XmlDocument doc = new XmlDocument();
         doc.Load(filePath);
 
-        // Add new dependency if not already present
         XmlNodeList dependenciesNodes = doc.GetElementsByTagName("Dependencies");
-        bool dependencyExists = false;
-
         if (dependenciesNodes.Count > 0)
         {
+            bool dependencyExists = false;
             foreach (XmlNode dependency in dependenciesNodes[0].ChildNodes)
             {
-                if (dependency.Attributes["Id"].Value == automationSetId)
+                if (dependency.Attributes["Id"] != null && dependency.Attributes["Id"].Value == automationSetId)
                 {
                     dependencyExists = true;
                     break;
@@ -46,7 +41,6 @@ class Program
             }
         }
 
-        // Update InstanceName, DisplayName, and ConnectionBlock
         XmlNodeList instanceNodes = doc.SelectNodes($"//ConnectionBlock[InstanceName/@Value='{oldMethodName}']");
         if (instanceNodes != null)
         {
@@ -71,7 +65,6 @@ class Program
             }
         }
 
-        // Update ComponentName, DisplayName, InstanceTypeName, etc.
         XmlNodeList componentNodes = doc.SelectNodes($"//OpenSpan.Automation.ConnectableMethod[ComponentName/@Value='{oldMethodName}']");
         if (componentNodes != null)
         {
@@ -127,7 +120,6 @@ class Program
             }
         }
 
-        // Save the updated XML document
         doc.Save(filePath);
 
         Console.WriteLine("Automation script updated successfully.");
