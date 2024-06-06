@@ -9,60 +9,63 @@ class Program
     {
         if (args.Length != 3)
         {
-            Console.WriteLine("Usage: FolderProcessor <folderPath> <fileExtension> <csvFilePath>");
+            Console.WriteLine("Usage: FolderProcessor <FolderPath> <FileExtension> <CSVFilePath>");
             return;
         }
 
         string folderPath = args[0];
         string fileExtension = args[1];
         string csvFilePath = args[2];
+        string projectDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\AutomationScriptConverter\\bin\\Debug\\AutomationScriptConverter.exe");
 
-        var csvLines = File.ReadAllLines(csvFilePath);
-        foreach (var line in csvLines)
+        foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
         {
-            var columns = line.Split(',');
-            if (columns.Length == 3)
+            Console.WriteLine($"Processing file: {file}");
+
+            using (TextFieldParser parser = new TextFieldParser(csvFilePath))
             {
-                var oldMethodName = columns[0].Trim();
-                var newMethodName = columns[1].Trim();
-                var automationSetId = columns[2].Trim();
-
-                foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
                 {
-                    Console.WriteLine($"Processing file: {file}");
-
-                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    string[] fields = parser.ReadFields();
+                    if (fields.Length == 3)
                     {
-                        FileName = "dotnet",
-                        Arguments = $"run --project \"..\\..\\..\\AutomationScriptConverter\\AutomationScriptConverter.csproj\" \"{file}\" \"{oldMethodName}\" \"{newMethodName}\" \"{automationSetId}\"",
-                        RedirectStandardOutput = true,
-                        RedirectStandardError = true,
-                        UseShellExecute = false,
-                        CreateNoWindow = true
-                    };
+                        string oldMethodName = fields[0];
+                        string newMethodName = fields[1];
+                        string automationSetId = fields[2];
 
-                    using (Process process = Process.Start(startInfo))
-                    {
-                        process.WaitForExit();
-
-                        string output = process.StandardOutput.ReadToEnd();
-                        string error = process.StandardError.ReadToEnd();
-
-                        Console.WriteLine($"Standard Output: {output}");
-                        if (!string.IsNullOrEmpty(error))
+                        ProcessStartInfo startInfo = new ProcessStartInfo
                         {
-                            Console.WriteLine($"Standard Error: {error}");
-                        }
+                            FileName = projectDirectory,
+                            Arguments = $"\"{file}\" \"{oldMethodName}\" \"{newMethodName}\" \"{automationSetId}\"",
+                            RedirectStandardOutput = true,
+                            RedirectStandardError = true,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        };
 
-                        if (process.ExitCode != 0)
+                        using (Process process = Process.Start(startInfo))
                         {
-                            Console.WriteLine($"Error processing file. Exit Code: {process.ExitCode}");
+                            process.WaitForExit();
+
+                            string output = process.StandardOutput.ReadToEnd();
+                            string error = process.StandardError.ReadToEnd();
+
+                            Console.WriteLine($"Standard Output: {output}");
+                            if (!string.IsNullOrEmpty(error))
+                            {
+                                Console.WriteLine($"Standard Error: {error}");
+                            }
+
+                            if (process.ExitCode != 0)
+                            {
+                                Console.WriteLine($"Error processing file. Exit Code: {process.ExitCode}");
+                            }
                         }
                     }
                 }
             }
         }
-
-        Console.WriteLine("Processing completed successfully.");
     }
 }
