@@ -34,19 +34,19 @@ namespace AutomationScriptWPF
             }
         }
 
-        private void ProcessButton_Click(object sender, RoutedEventArgs e)
+        private async void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
             string folderPath = FolderPathTextBox.Text;
             string fileExtension = FileExtensionTextBox.Text;
             string csvFilePath = CSVFilePathTextBox.Text;
             string folderProcessorPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\FolderProcessor\\bin\\Debug\\FolderProcessor.exe");
-
+        
             if (string.IsNullOrEmpty(folderPath) || string.IsNullOrEmpty(fileExtension) || string.IsNullOrEmpty(csvFilePath))
             {
                 MessageBox.Show("Please provide all inputs.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
+        
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = folderProcessorPath,
@@ -56,28 +56,49 @@ namespace AutomationScriptWPF
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-
-            using (Process process = Process.Start(startInfo))
+        
+            try
             {
-                process.WaitForExit();
-
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
-
-                MessageBox.Show($"Standard Output: {output}");
-                if (!string.IsNullOrEmpty(error))
+                using (Process process = new Process { StartInfo = startInfo, EnableRaisingEvents = true })
                 {
-                    MessageBox.Show($"Standard Error: {error}");
+                    var outputBuilder = new System.Text.StringBuilder();
+                    var errorBuilder = new System.Text.StringBuilder();
+        
+                    process.OutputDataReceived += (s, ev) => { if (ev.Data != null) outputBuilder.AppendLine(ev.Data); };
+                    process.ErrorDataReceived += (s, ev) => { if (ev.Data != null) errorBuilder.AppendLine(ev.Data); };
+        
+                    process.Start();
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+        
+                    await Task.Run(() => process.WaitForExit());
+        
+                    string output = outputBuilder.ToString();
+                    string error = errorBuilder.ToString();
+        
+                    if (!string.IsNullOrEmpty(output))
+                    {
+                        MessageBox.Show($"Standard Output: {output}", "Output", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+        
+                    if (!string.IsNullOrEmpty(error))
+                    {
+                        MessageBox.Show($"Standard Error: {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+        
+                    if (process.ExitCode != 0)
+                    {
+                        MessageBox.Show($"Error processing folder. Exit Code: {process.ExitCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Processing completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
-
-                if (process.ExitCode != 0)
-                {
-                    MessageBox.Show($"Error processing folder. Exit Code: {process.ExitCode}");
-                }
-                else
-                {
-                    MessageBox.Show("Processing completed successfully.");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
