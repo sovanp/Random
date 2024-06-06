@@ -1,8 +1,10 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace AutomationScriptWPF
 {
@@ -15,7 +17,7 @@ namespace AutomationScriptWPF
 
         private void BrowseFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 FolderPathTextBox.Text = dialog.SelectedPath;
@@ -40,13 +42,13 @@ namespace AutomationScriptWPF
             string fileExtension = FileExtensionTextBox.Text;
             string csvFilePath = CSVFilePathTextBox.Text;
             string folderProcessorPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\FolderProcessor\\bin\\Debug\\FolderProcessor.exe");
-        
+
             if (string.IsNullOrEmpty(folderPath) || string.IsNullOrEmpty(fileExtension) || string.IsNullOrEmpty(csvFilePath))
             {
-                MessageBox.Show("Please provide all inputs.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("Please provide all inputs.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-        
+
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = folderProcessorPath,
@@ -56,49 +58,49 @@ namespace AutomationScriptWPF
                 UseShellExecute = false,
                 CreateNoWindow = true
             };
-        
+
             try
             {
                 using (Process process = new Process { StartInfo = startInfo, EnableRaisingEvents = true })
                 {
                     var outputBuilder = new System.Text.StringBuilder();
                     var errorBuilder = new System.Text.StringBuilder();
-        
+
                     process.OutputDataReceived += (s, ev) => { if (ev.Data != null) outputBuilder.AppendLine(ev.Data); };
                     process.ErrorDataReceived += (s, ev) => { if (ev.Data != null) errorBuilder.AppendLine(ev.Data); };
-        
+
                     process.Start();
                     process.BeginOutputReadLine();
                     process.BeginErrorReadLine();
-        
+
                     await Task.Run(() => process.WaitForExit());
-        
+
                     string output = outputBuilder.ToString();
                     string error = errorBuilder.ToString();
-        
+
                     if (!string.IsNullOrEmpty(output))
                     {
-                        MessageBox.Show($"Standard Output: {output}", "Output", MessageBoxButton.OK, MessageBoxImage.Information);
+                        System.Windows.MessageBox.Show($"Standard Output: {output}", "Output", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
-        
+
                     if (!string.IsNullOrEmpty(error))
                     {
-                        MessageBox.Show($"Standard Error: {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show($"Standard Error: {error}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-        
+
                     if (process.ExitCode != 0)
                     {
-                        MessageBox.Show($"Error processing folder. Exit Code: {process.ExitCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        System.Windows.MessageBox.Show($"Error processing folder. Exit Code: {process.ExitCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Processing completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                        System.Windows.MessageBox.Show("Processing completed successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
