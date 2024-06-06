@@ -1,0 +1,115 @@
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution
+
+Folder PATH listing for volume System
+Volume serial number is A4EC-D66A
+C:.
+|   AutomationConverterSolution.sln
+|   text.txt
+|   
++---AutomationScriptConverter
+|   |   App.config
+|   |   AutomationScriptConverter.csproj
+|   |   Program.cs
+|   |   
+|   +---bin
+|   |   \---Debug
+|   |           AutomationScriptConverter.exe
+|   |           AutomationScriptConverter.exe.config
+|   |           AutomationScriptConverter.pdb
+|   |           AutomationScriptConverter.vshost.exe
+|   |           AutomationScriptConverter.vshost.exe.config
+|   |           AutomationScriptConverter.vshost.exe.manifest
+|   |           
+|   +---obj
+|   |   \---Debug
+|   |       |   .NETFramework,Version=v4.5.2.AssemblyAttributes.cs
+|   |       |   AutomationScriptConverter.csproj.AssemblyReference.cache
+|   |       |   AutomationScriptConverter.csproj.CoreCompileInputs.cache
+|   |       |   AutomationScriptConverter.csproj.FileListAbsolute.txt
+|   |       |   AutomationScriptConverter.exe
+|   |       |   AutomationScriptConverter.pdb
+|   |       |   DesignTimeResolveAssemblyReferencesInput.cache
+|   |       |   TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+|   |       |   TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+|   |       |   TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+|   |       |   
+|   |       \---TempPE
+|   \---Properties
+|           AssemblyInfo.cs
+|           
++---AutomationScriptWPF
+|   |   App.config
+|   |   App.xaml
+|   |   App.xaml.cs
+|   |   AutomationScriptWPF.csproj
+|   |   MainWindow.xaml
+|   |   MainWindow.xaml.cs
+|   |   
+|   +---bin
+|   |   \---Debug
+|   |           AutomationScriptWPF.exe
+|   |           AutomationScriptWPF.exe.config
+|   |           AutomationScriptWPF.pdb
+|   |           AutomationScriptWPF.vshost.exe
+|   |           AutomationScriptWPF.vshost.exe.config
+|   |           AutomationScriptWPF.vshost.exe.manifest
+|   |           
+|   +---obj
+|   |   \---Debug
+|   |       |   App.g.cs
+|   |       |   App.g.i.cs
+|   |       |   AutomationScriptWPF.csproj.FileListAbsolute.txt
+|   |       |   AutomationScriptWPF.csproj.GenerateResource.Cache
+|   |       |   AutomationScriptWPF.csprojResolveAssemblyReference.cache
+|   |       |   AutomationScriptWPF.exe
+|   |       |   AutomationScriptWPF.g.resources
+|   |       |   AutomationScriptWPF.pdb
+|   |       |   AutomationScriptWPF.Properties.Resources.resources
+|   |       |   AutomationScriptWPF_MarkupCompile.cache
+|   |       |   AutomationScriptWPF_MarkupCompile.i.cache
+|   |       |   DesignTimeResolveAssemblyReferencesInput.cache
+|   |       |   MainWindow.baml
+|   |       |   MainWindow.g.cs
+|   |       |   MainWindow.g.i.cs
+|   |       |   TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+|   |       |   TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+|   |       |   TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+|   |       |   
+|   |       \---TempPE
+|   |               Properties.Resources.Designer.cs.dll
+|   |               
+|   \---Properties
+|           AssemblyInfo.cs
+|           Resources.Designer.cs
+|           Resources.resx
+|           Settings.Designer.cs
+|           Settings.settings
+|           
+\---FolderProcessor
+    |   App.config
+    |   FolderProcessor.csproj
+    |   Program.cs
+    |   
+    +---bin
+    |   \---Debug
+    |           AutomationScriptConverter.exe
+    |           AutomationScriptConverter.pdb
+    |           FolderProcessor.exe
+    |           FolderProcessor.exe.config
+    |           FolderProcessor.pdb
+    |           
+    +---obj
+    |   \---Debug
+    |       |   DesignTimeResolveAssemblyReferencesInput.cache
+    |       |   FolderProcessor.csproj.FileListAbsolute.txt
+    |       |   FolderProcessor.csprojResolveAssemblyReference.cache
+    |       |   FolderProcessor.exe
+    |       |   FolderProcessor.pdb
+    |       |   TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+    |       |   TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs
+    |       |   TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs
+    |       |   
+    |       \---TempPE
+    \---Properties
+            AssemblyInfo.cs
+            
