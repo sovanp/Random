@@ -78,53 +78,33 @@ namespace AutomationConverterGUI
 
         private void ProcessFolder(string folderPath, string fileExtension, string csvFilePath)
         {
-            foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
+            // Call the FolderProcessor with the given parameters
+            ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                Console.WriteLine($"Processing file: {file}");
+                FileName = @"..\..\..\FolderProcessor\bin\Debug\FolderProcessor.exe",
+                Arguments = $"\"{folderPath}\" \"{fileExtension}\" \"{csvFilePath}\"",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
 
-                using (TextFieldParser parser = new TextFieldParser(csvFilePath))
+            using (Process process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+
+                string output = process.StandardOutput.ReadToEnd();
+                string error = process.StandardError.ReadToEnd();
+
+                Console.WriteLine($"Standard Output: {output}");
+                if (!string.IsNullOrEmpty(error))
                 {
-                    parser.TextFieldType = FieldType.Delimited;
-                    parser.SetDelimiters(",");
-                    while (!parser.EndOfData)
-                    {
-                        string[] fields = parser.ReadFields();
-                        if (fields.Length == 3)
-                        {
-                            string oldMethodName = fields[0];
-                            string newMethodName = fields[1];
-                            string automationSetId = fields[2];
+                    Console.WriteLine($"Standard Error: {error}");
+                }
 
-                            ProcessStartInfo startInfo = new ProcessStartInfo
-                            {
-                                FileName = @"..\..\..\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.exe",
-                                Arguments = $"\"{file}\" \"{oldMethodName}\" \"{newMethodName}\" \"{automationSetId}\"",
-                                RedirectStandardOutput = true,
-                                RedirectStandardError = true,
-                                UseShellExecute = false,
-                                CreateNoWindow = true
-                            };
-
-                            using (Process process = Process.Start(startInfo))
-                            {
-                                process.WaitForExit();
-
-                                string output = process.StandardOutput.ReadToEnd();
-                                string error = process.StandardError.ReadToEnd();
-
-                                Console.WriteLine($"Standard Output: {output}");
-                                if (!string.IsNullOrEmpty(error))
-                                {
-                                    Console.WriteLine($"Standard Error: {error}");
-                                }
-
-                                if (process.ExitCode != 0)
-                                {
-                                    Console.WriteLine($"Error processing file. Exit Code: {process.ExitCode}");
-                                }
-                            }
-                        }
-                    }
+                if (process.ExitCode != 0)
+                {
+                    Console.WriteLine($"Error processing folder. Exit Code: {process.ExitCode}");
                 }
             }
 
