@@ -1,72 +1,101 @@
-﻿using System;
-using System.IO;
+using System;
 using System.Diagnostics;
+using System.IO;
+using Microsoft.VisualBasic.FileIO;
 
-class FolderProcessor
+class Program
 {
     static void Main(string[] args)
     {
-        // Ensure the correct number of arguments are provided
-        if (args.Length != 5)
+        if (args.Length != 3)
         {
-            Console.WriteLine("Usage: dotnet run <FolderPath> <FileExtension> <OldMethodName> <NewMethodName> <AutomationSetId>");
+            Console.WriteLine("Usage: FolderProcessor <FolderPath> <FileExtension> <CSVFilePath>");
             return;
         }
 
-        // Assign arguments to variables
         string folderPath = args[0];
         string fileExtension = args[1];
-        string oldMethodName = args[2];
-        string newMethodName = args[3];
-        string automationSetId = args[4];
+        string csvFilePath = args[2];
+        string projectDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\AutomationScriptConverter\\bin\\Debug\\AutomationScriptConverter.exe");
 
-        // Validate folder path 
-        if (!Directory.Exists(folderPath))
+        // Load CSV data into a DataTable
+        var dt = new DataTable();
+        using (var parser = new TextFieldParser(csvFilePath))
         {
-            Console.WriteLine($"The folder path {folderPath} does not exist.");
-            return;
+            parser.TextFieldType = FieldType.Delimited;
+            parser.SetDelimiters(",");
+            string[] headers = parser.ReadFields();
+            foreach (string header in headers)
+            {
+                dt.Columns.Add(header);
+            }
+            while (!parser.EndOfData)
+            {
+                string[] fields = parser.ReadFields();
+                dt.Rows.Add(fields);
+            }
         }
 
-        ProcessFolder(folderPath, fileExtension, oldMethodName, newMethodName, automationSetId);
-    }
-
-    static void ProcessFolder(string folderPath, string fileExtension, string oldMethodName, string newMethodName, string automationSetId)
-    {
-        string autoScriptConverterPath = @"C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationScriptConverter\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.exe";
-
-        foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
+        // Process each file in the directory
+        foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", System.IO.SearchOption.AllDirectories))
         {
             Console.WriteLine($"Processing file: {file}");
-            ProcessStartInfo startInfo = new ProcessStartInfo
+
+            // Load the XML document to find the appropriate parameters
+            XmlDocument doc = new XmlDocument();
+            doc.Load(file);
+            bool fileProcessed = false;
+
+            foreach (DataRow row in dt.Rows)
             {
-                FileName = autoScriptConverterPath,
-                Arguments = $"\"{file}\" \"{oldMethodName}\" \"{newMethodName}\" \"{automationSetId}\"",
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+                string oldMethodName = row["OldMethodName"].ToString();
+                string newMethodName = row["NewMethodName"].ToString();
+                string automationSetId = row["AutomationSetId"].ToString();
 
-            using (Process process = new Process { StartInfo = startInfo })
+                // Check if this row's parameters are used in the file
+                XmlNodeList instanceNodes = doc.SelectNodes($"//ConnectionBlock[InstanceName/@Value='{oldMethodName}']");
+                XmlNodeList componentNodes = doc.SelectNodes($"//OpenSpan.Automation.ConnectableMethod[ComponentName/@Value='{oldMethodName}']");
+
+                if (instanceNodes.Count > 0 || componentNodes.Count > 0)
+                {
+                    // Run the AutomationScriptConverter with the found parameters
+                    ProcessStartInfo startInfo = new ProcessStartInfo
+                    {
+                        FileName = projectDirectory,
+                        Arguments = $"\"{file}\" \"{oldMethodName}\" \"{newMethodName}\" \"{automationSetId}\"",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    using (Process process = Process.Start(startInfo))
+                    {
+                        process.WaitForExit();
+
+                        string output = process.StandardOutput.ReadToEnd();
+                        string error = process.StandardError.ReadToEnd();
+
+                        Console.WriteLine($"Standard Output: {output}");
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            Console.WriteLine($"Standard Error: {error}");
+                        }
+
+                        if (process.ExitCode != 0)
+                        {
+                            Console.WriteLine($"Error processing file. Exit Code: {process.ExitCode}");
+                        }
+                    }
+
+                    fileProcessed = true;
+                    break; // Exit the loop once the correct parameters are found and used
+                }
+            }
+
+            if (!fileProcessed)
             {
-                process.Start();
-                string output = process.StandardOutput.ReadToEnd();
-                string error = process.StandardError.ReadToEnd();
-                process.WaitForExit();
-
-                Console.WriteLine("Standard Output:");
-                Console.WriteLine(output);
-                Console.WriteLine("Standard Error:");
-                Console.WriteLine(error);
-
-                if (process.ExitCode != 0)
-                {
-                    Console.WriteLine($"Error processing File {file}: {error}");
-                }
-                else
-                {
-                    Console.WriteLine($"Successfully processed File {file}");
-                }
+                Console.WriteLine($"No matching parameters found in CSV for file: {file}");
             }
         }
     }
