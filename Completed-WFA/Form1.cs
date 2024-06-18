@@ -51,18 +51,36 @@ namespace FolderProcessorApp
             {
                 using (var reader = new StreamReader(csvFilePath))
                 {
-                    var header = reader.ReadLine();
-                    if (header != null)
-                    {
-                        var headers = header.Split(',');
-                        txtOutput.AppendText(string.Join("\t", headers) + Environment.NewLine);
-                        txtOutput.AppendText(new string('-', 50) + Environment.NewLine);
-                    }
+                    var table = new List<string[]>();
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(',');
-                        txtOutput.AppendText(string.Join("\t", values) + Environment.NewLine);
+                        table.Add(values);
+                    }
+
+                    if (table.Count > 0)
+                    {
+                        int[] columnWidths = new int[table[0].Length];
+                        foreach (var row in table)
+                        {
+                            for (int i = 0; i < row.Length; i++)
+                            {
+                                if (row[i].Length > columnWidths[i])
+                                {
+                                    columnWidths[i] = row[i].Length;
+                                }
+                            }
+                        }
+
+                        foreach (var row in table)
+                        {
+                            for (int i = 0; i < row.Length; i++)
+                            {
+                                txtOutput.AppendText(row[i].PadRight(columnWidths[i] + 2));
+                            }
+                            txtOutput.AppendText(Environment.NewLine);
+                        }
                     }
                 }
             }
