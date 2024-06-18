@@ -2,10 +2,6 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
-using CsvHelper;
-using CsvHelper.Configuration;
-using System.Globalization;
 
 class FolderProcessor
 {
@@ -29,9 +25,27 @@ class FolderProcessor
     {
         var parameterList = new List<ParameterSet>();
         using (var reader = new StreamReader(csvFilePath))
-        using (var csv = new CsvReader(reader, new CsvConfiguration(CultureInfo.InvariantCulture) { HasHeaderRecord = true }))
         {
-            parameterList = csv.GetRecords<ParameterSet>().ToList();
+            bool isFirstLine = true;
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                if (isFirstLine)
+                {
+                    isFirstLine = false;
+                    continue; // Skip header
+                }
+                var values = line.Split(',');
+                if (values.Length == 3)
+                {
+                    parameterList.Add(new ParameterSet
+                    {
+                        OldMethodName = values[0],
+                        NewMethodName = values[1],
+                        AutomationSetId = values[2]
+                    });
+                }
+            }
         }
         return parameterList;
     }
