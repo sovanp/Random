@@ -98,7 +98,6 @@ namespace FolderProcessorApp
             this.Text = "Folder Processor";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.TextBox txtFolderPath;
