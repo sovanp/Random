@@ -53,17 +53,16 @@ class FolderProcessor
     static void ProcessFolder(string folderPath, string fileExtension, List<ParameterSet> parameterList)
     {
         string automationScriptConverterPath = @"C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.exe";
-        
-        int paramIndex = 0;
+
         foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
         {
-            if (paramIndex >= parameterList.Count)
+            var parameters = FindMatchingParameters(file, parameterList);
+            if (parameters == null)
             {
-                Console.WriteLine("Not enough parameters in the CSV file to process all files.");
-                break;
+                Console.WriteLine($"No matching parameters found for file: {file}");
+                continue;
             }
 
-            var parameters = parameterList[paramIndex++];
             Console.WriteLine($"Processing file: {file} with parameters {parameters.OldMethodName}, {parameters.NewMethodName}, {parameters.AutomationSetId}");
 
             ProcessStartInfo startInfo = new ProcessStartInfo
@@ -98,6 +97,19 @@ class FolderProcessor
                 }
             }
         }
+    }
+
+    static ParameterSet FindMatchingParameters(string filePath, List<ParameterSet> parameterList)
+    {
+        var fileContent = File.ReadAllText(filePath);
+        foreach (var parameters in parameterList)
+        {
+            if (fileContent.Contains(parameters.OldMethodName))
+            {
+                return parameters;
+            }
+        }
+        return null;
     }
 }
 
