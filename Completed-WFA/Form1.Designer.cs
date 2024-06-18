@@ -22,11 +22,16 @@ namespace FolderProcessorApp
             this.btnBrowseFolder = new System.Windows.Forms.Button();
             this.btnBrowseCsv = new System.Windows.Forms.Button();
             this.btnProcess = new System.Windows.Forms.Button();
-            this.txtOutput = new System.Windows.Forms.TextBox();
             this.lblFolderPath = new System.Windows.Forms.Label();
             this.lblFileExtension = new System.Windows.Forms.Label();
             this.lblCsvPath = new System.Windows.Forms.Label();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dgvOutput = new System.Windows.Forms.DataGridView();
+            this.txtOutput = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,18 +86,6 @@ namespace FolderProcessorApp
             this.btnProcess.UseVisualStyleBackColor = true;
             this.btnProcess.Click += new System.EventHandler(this.btnProcess_Click);
             // 
-            // txtOutput
-            // 
-            this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOutput.Location = new System.Drawing.Point(12, 350);
-            this.txtOutput.Multiline = true;
-            this.txtOutput.Name = "txtOutput";
-            this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOutput.Size = new System.Drawing.Size(341, 130);
-            this.txtOutput.TabIndex = 6;
-            // 
             // lblFolderPath
             // 
             this.lblFolderPath.AutoSize = true;
@@ -120,25 +113,52 @@ namespace FolderProcessorApp
             this.lblCsvPath.TabIndex = 9;
             this.lblCsvPath.Text = "CSV Path:";
             // 
-            // dgvOutput
+            // splitContainer
             // 
-            this.dgvOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer.Location = new System.Drawing.Point(12, 169);
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.dgvOutput);
+            // 
+            // splitContainer.Panel2
+            // 
+            this.splitContainer.Panel2.Controls.Add(this.txtOutput);
+            this.splitContainer.Size = new System.Drawing.Size(341, 310);
+            this.splitContainer.SplitterDistance = 155;
+            this.splitContainer.TabIndex = 10;
+            // 
+            // dgvOutput
+            // 
             this.dgvOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOutput.Location = new System.Drawing.Point(12, 169);
+            this.dgvOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvOutput.Location = new System.Drawing.Point(0, 0);
             this.dgvOutput.Name = "dgvOutput";
-            this.dgvOutput.Size = new System.Drawing.Size(341, 175);
-            this.dgvOutput.TabIndex = 10;
+            this.dgvOutput.Size = new System.Drawing.Size(341, 155);
+            this.dgvOutput.TabIndex = 0;
+            // 
+            // txtOutput
+            // 
+            this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtOutput.Location = new System.Drawing.Point(0, 0);
+            this.txtOutput.Multiline = true;
+            this.txtOutput.Name = "txtOutput";
+            this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtOutput.Size = new System.Drawing.Size(341, 151);
+            this.txtOutput.TabIndex = 0;
             // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(365, 491);
-            this.Controls.Add(this.dgvOutput);
+            this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.lblCsvPath);
             this.Controls.Add(this.lblFileExtension);
             this.Controls.Add(this.lblFolderPath);
-            this.Controls.Add(this.txtOutput);
             this.Controls.Add(this.btnProcess);
             this.Controls.Add(this.btnBrowseCsv);
             this.Controls.Add(this.btnBrowseFolder);
@@ -147,6 +167,11 @@ namespace FolderProcessorApp
             this.Controls.Add(this.txtFolderPath);
             this.Name = "Form1";
             this.Text = "Folder Processor";
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel2.ResumeLayout(false);
+            this.splitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,10 +183,11 @@ namespace FolderProcessorApp
         private System.Windows.Forms.Button btnBrowseFolder;
         private System.Windows.Forms.Button btnBrowseCsv;
         private System.Windows.Forms.Button btnProcess;
-        private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Label lblFolderPath;
         private System.Windows.Forms.Label lblFileExtension;
         private System.Windows.Forms.Label lblCsvPath;
+        private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.DataGridView dgvOutput;
+        private System.Windows.Forms.TextBox txtOutput;
     }
 }
