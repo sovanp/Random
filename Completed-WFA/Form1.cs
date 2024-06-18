@@ -43,43 +43,32 @@ namespace FolderProcessorApp
             }
         }
 
-        // Display the content of the CSV file in the output area
+        // Display the content of the CSV file in the DataGridView
         private void DisplayCsvContent(string csvFilePath)
         {
-            txtOutput.Clear();
+            dgvOutput.Rows.Clear();
+            dgvOutput.Columns.Clear();
             try
             {
                 using (var reader = new StreamReader(csvFilePath))
                 {
-                    var table = new List<string[]>();
+                    bool isFirstLine = true;
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
                         var values = line.Split(',');
-                        table.Add(values);
-                    }
 
-                    if (table.Count > 0)
-                    {
-                        int[] columnWidths = new int[table[0].Length];
-                        foreach (var row in table)
+                        if (isFirstLine)
                         {
-                            for (int i = 0; i < row.Length; i++)
+                            foreach (var header in values)
                             {
-                                if (row[i].Length > columnWidths[i])
-                                {
-                                    columnWidths[i] = row[i].Length;
-                                }
+                                dgvOutput.Columns.Add(header, header);
                             }
+                            isFirstLine = false;
                         }
-
-                        foreach (var row in table)
+                        else
                         {
-                            for (int i = 0; i < row.Length; i++)
-                            {
-                                txtOutput.AppendText(row[i].PadRight(columnWidths[i] + 2));
-                            }
-                            txtOutput.AppendText(Environment.NewLine);
+                            dgvOutput.Rows.Add(values);
                         }
                     }
                 }
