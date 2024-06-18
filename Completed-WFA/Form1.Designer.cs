@@ -26,6 +26,8 @@ namespace FolderProcessorApp
             this.lblFolderPath = new System.Windows.Forms.Label();
             this.lblFileExtension = new System.Windows.Forms.Label();
             this.lblCsvPath = new System.Windows.Forms.Label();
+            this.dgvOutput = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
             this.SuspendLayout();
             // 
             // txtFolderPath
@@ -84,7 +86,7 @@ namespace FolderProcessorApp
             this.txtOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOutput.Location = new System.Drawing.Point(12, 169);
+            this.txtOutput.Location = new System.Drawing.Point(12, 350);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -118,9 +120,21 @@ namespace FolderProcessorApp
             this.lblCsvPath.TabIndex = 9;
             this.lblCsvPath.Text = "CSV Path:";
             // 
+            // dgvOutput
+            // 
+            this.dgvOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOutput.Location = new System.Drawing.Point(12, 169);
+            this.dgvOutput.Name = "dgvOutput";
+            this.dgvOutput.Size = new System.Drawing.Size(341, 175);
+            this.dgvOutput.TabIndex = 10;
+            // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(365, 311);
+            this.ClientSize = new System.Drawing.Size(365, 491);
+            this.Controls.Add(this.dgvOutput);
             this.Controls.Add(this.lblCsvPath);
             this.Controls.Add(this.lblFileExtension);
             this.Controls.Add(this.lblFolderPath);
@@ -133,6 +147,7 @@ namespace FolderProcessorApp
             this.Controls.Add(this.txtFolderPath);
             this.Name = "Form1";
             this.Text = "Folder Processor";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -147,5 +162,6 @@ namespace FolderProcessorApp
         private System.Windows.Forms.Label lblFolderPath;
         private System.Windows.Forms.Label lblFileExtension;
         private System.Windows.Forms.Label lblCsvPath;
+        private System.Windows.Forms.DataGridView dgvOutput;
     }
 }
