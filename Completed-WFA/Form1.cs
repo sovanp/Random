@@ -51,10 +51,18 @@ namespace FolderProcessorApp
             {
                 using (var reader = new StreamReader(csvFilePath))
                 {
+                    var header = reader.ReadLine();
+                    if (header != null)
+                    {
+                        var headers = header.Split(',');
+                        txtOutput.AppendText(string.Join("\t", headers) + Environment.NewLine);
+                        txtOutput.AppendText(new string('-', 50) + Environment.NewLine);
+                    }
                     while (!reader.EndOfStream)
                     {
                         var line = reader.ReadLine();
-                        txtOutput.AppendText(line + Environment.NewLine);
+                        var values = line.Split(',');
+                        txtOutput.AppendText(string.Join("\t", values) + Environment.NewLine);
                     }
                 }
             }
@@ -83,6 +91,7 @@ namespace FolderProcessorApp
         // Process the files in the specified folder
         private void ProcessFolder(string folderPath, string fileExtension, string csvPath)
         {
+            // Update this path to the correct location on the manager's machine
             string folderProcessorPath = @"C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\FolderProcessor.exe";
             
             ProcessStartInfo startInfo = new ProcessStartInfo
