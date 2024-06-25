@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 using FolderProcessor;
 
@@ -11,9 +12,6 @@ namespace FolderProcessorApp
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Event handler for Browse Folder button click.
-        /// </summary>
         private void btnBrowseFolder_Click(object sender, EventArgs e)
         {
             using (var fbd = new FolderBrowserDialog())
@@ -27,9 +25,6 @@ namespace FolderProcessorApp
             }
         }
 
-        /// <summary>
-        /// Event handler for Browse CSV button click.
-        /// </summary>
         private void btnBrowseCsv_Click(object sender, EventArgs e)
         {
             using (var ofd = new OpenFileDialog())
@@ -45,10 +40,6 @@ namespace FolderProcessorApp
             }
         }
 
-        /// <summary>
-        /// Displays the content of the CSV file in the DataGridView.
-        /// </summary>
-        /// <param name="csvFilePath">The path to the CSV file.</param>
         private void DisplayCsvContent(string csvFilePath)
         {
             dgvOutput.Rows.Clear();
@@ -84,9 +75,6 @@ namespace FolderProcessorApp
             }
         }
 
-        /// <summary>
-        /// Event handler for Process button click.
-        /// </summary>
         private void btnProcess_Click(object sender, EventArgs e)
         {
             string folderPath = txtFolderPath.Text;
