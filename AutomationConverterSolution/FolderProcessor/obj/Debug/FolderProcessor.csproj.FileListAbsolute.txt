@@ -1,0 +1,8 @@
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\FolderProcessor.pdb
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\AutomationScriptConverter.pdb
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\FolderProcessor\obj\Debug\FolderProcessor.csprojResolveAssemblyReference.cache
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\FolderProcessor\obj\Debug\FolderProcessor.pdb
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\FolderProcessor.dll.config
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\FolderProcessor.dll
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\bin\Debug\AutomationScriptConverter.dll
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\obj\Debug\FolderProcessor.dll

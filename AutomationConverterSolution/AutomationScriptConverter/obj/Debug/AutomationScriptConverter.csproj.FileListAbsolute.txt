@@ -1,0 +1,6 @@
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.pdb
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\obj\Debug\AutomationScriptConverter.pdb
+c:\users\vn82\documents\visual studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\obj\Debug\AutomationScriptConverter.csprojResolveAssemblyReference.cache
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.dll.config
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\bin\Debug\AutomationScriptConverter.dll
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\obj\Debug\AutomationScriptConverter.dll

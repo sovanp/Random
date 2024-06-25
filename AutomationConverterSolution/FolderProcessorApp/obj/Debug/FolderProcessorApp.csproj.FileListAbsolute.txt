@@ -1,0 +1,13 @@
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\FolderProcessorApp.exe.config
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\FolderProcessorApp.exe
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\FolderProcessorApp.pdb
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.Properties.Resources.resources
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.csproj.GenerateResource.Cache
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.exe
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.pdb
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.csprojResolveAssemblyReference.cache
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\obj\Debug\FolderProcessorApp.Form1.resources
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\FolderProcessor.dll
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\AutomationScriptConverter.dll
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\FolderProcessor.pdb
+C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\bin\Debug\AutomationScriptConverter.pdb
