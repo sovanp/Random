@@ -87,8 +87,22 @@ namespace FolderProcessorApp
                 return;
             }
 
-            Processor processor = new Processor();
-            processor.ProcessFolder(folderPath, fileExtension, csvPath);
+            try
+            {
+                Processor processor = new Processor();
+                StringWriter stringWriter = new StringWriter();
+                Console.SetOut(stringWriter);
+
+                processor.ProcessFolder(folderPath, fileExtension, csvPath);
+
+                txtOutput.Text = stringWriter.ToString();
+                MessageBox.Show("Files processed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                txtOutput.Text = ex.ToString();
+                MessageBox.Show("Error processing files: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
