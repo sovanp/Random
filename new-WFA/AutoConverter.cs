@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace AutomationScriptConverter
 {
-    public class ScriptConverter
+    public class AutoConverter
     {
         /// <summary>
         /// Converts the automation script by updating specified nodes and adding dependencies.
