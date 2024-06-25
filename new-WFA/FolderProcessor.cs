@@ -16,7 +16,7 @@ namespace FolderProcessor
         public void ProcessFolder(string folderPath, string fileExtension, string csvPath)
         {
             var parameterList = LoadParametersFromCsv(csvPath);
-            var scriptConverter = new ScriptConverter();
+            var scriptConverter = new AutoConverter();
 
             foreach (var file in Directory.GetFiles(folderPath, $"*{fileExtension}", SearchOption.AllDirectories))
             {
