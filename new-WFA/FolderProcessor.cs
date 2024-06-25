@@ -29,6 +29,7 @@ namespace FolderProcessor
 
                 Console.WriteLine($"Processing file: {file} with parameters {parameters.OldMethodName}, {parameters.NewMethodName}, {parameters.AutomationSetId}");
                 scriptConverter.ConvertScript(file, parameters.OldMethodName, parameters.NewMethodName, parameters.AutomationSetId);
+                Console.WriteLine("Automation script updated successfully.");
             }
         }
 
