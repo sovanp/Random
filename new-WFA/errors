@@ -1,15 +1,2 @@
-1>------ Build started: Project: AutomationScriptConverter, Configuration: Debug Any CPU ------
-2>------ Build started: Project: FolderProcessorApp, Configuration: Debug Any CPU ------
-1>CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point
-3>------ Build started: Project: FolderProcessor, Configuration: Debug Any CPU ------
-2>C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs(3,7,3,22): error CS0246: The type or namespace name 'FolderProcessor' could not be found (are you missing a using directive or an assembly reference?)
-3>C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\Program.cs(4,7,4,32): error CS0246: The type or namespace name 'AutomationScriptConverter' could not be found (are you missing a using directive or an assembly reference?)
-========== Build: 0 succeeded, 3 failed, 0 up-to-date, 0 skipped ==========
-
 Severity	Code	Description	Project	File	Line	Suppression State
-Error	CS5001	Program does not contain a static 'Main' method suitable for an entry point	AutomationScriptConverter	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\AutomationScriptConverter\CSC	1	Active
-Error	CS0246	The type or namespace name 'FolderProcessor' could not be found (are you missing a using directive or an assembly reference?)	FolderProcessorApp	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs	3	Active
-Error	CS0246	The type or namespace name 'StreamReader' could not be found (are you missing a using directive or an assembly reference?)	FolderProcessorApp	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs	58	Active
-Error	CS1579	foreach statement cannot operate on variables of type '?' because '?' does not contain a public definition for 'GetEnumerator'	FolderProcessorApp	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs	68	Active
-Error	CS0246	The type or namespace name 'Processor' could not be found (are you missing a using directive or an assembly reference?)	FolderProcessorApp	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs	102	Active
-Error	CS0246	The type or namespace name 'Processor' could not be found (are you missing a using directive or an assembly reference?)	FolderProcessorApp	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessorApp\Form1.cs	102	Active
+Error	CS5001	Program does not contain a static 'Main' method suitable for an entry point	FolderProcessor	C:\Users\vn82\Documents\Visual Studio 2015\Projects\AutomationConverterSolution\FolderProcessor\CSC	1	Active
