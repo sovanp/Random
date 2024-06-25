@@ -32,7 +32,7 @@ namespace FolderProcessorApp
                 ofd.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
                 DialogResult result = ofd.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(ofd.FileName))
+                if (result == OK && !string.IsNullOrWhiteSpace(ofd.FileName))
                 {
                     txtCsvPath.Text = ofd.FileName;
                     DisplayCsvContent(ofd.FileName);
