@@ -1,0 +1,34 @@
+User Story : 
+Use wants a Non-Cumulative NCPI calculation 
+
+Acceptance Criteria :
+1. Rename field from Loan Proceeds to ACB Loan Proceeds to the following tabs 
+	- ACB Calculation (B15)  
+	- Gain Calculation (B16) 
+	- Post 2016 PUA Transfer to Loan (B30) 
+	- PUA Withdrawal - Post 2016 (B30) 
+	- PUA Withdrawal - PostMac (B30) 
+	- LF8258 Accrued Income (B26) 
+	- Maturity Amount (B34) 
+
+2. At the end of the form on the ACB Calculation tab, add three new fields:
+
+Field | Value 
+Current Cost Excluded | Copy the value in C10 
+Previous Cost Excluded | Scraped from MLIF, Position TBD 
+Non-Cumulative NCPI | (Current Cost Excluded) - (Previous Cost Excluded) 
+
+- Use the existing colour template (white & green) 
+- Copy function similar to the existing other two [Copy], will select and copy to the clipboard the range of B4 to C34 
+	- Adjust the existing two [Copy] to include the Policy #  
+
+3. Adjust the existing  [Copy] to include the Policy #  
+- ACB Calculation (B15)  
+- Gain Calculation (B16) 
+- Post 2016 PUA Transfer to Loan (B30) 
+- PUA Withdrawal - Post 2016 (B30) 
+- PUA Withdrawal - PostMac (B30) 
+- PUA Withdrawal - PreMac 
+- LF8258 Accrued Income (B26) 
+- Maturity Amount (B34) 
+- UL Partial Withdrawals 
