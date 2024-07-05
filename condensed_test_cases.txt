@@ -1,0 +1,43 @@
+
+Test Case 3:
+Test Case Description: Confirm if Loan Proceeds field is renamed to ACB Loan Proceeds in all relevant tabs
+Steps to Execute:
+1. Open ISO Tax Calculation Templates in UAT LAN environment
+2. Navigate to each of the following tabs and verify the field name:
+   - ACB Calculation (cell B15)
+   - Gain Calculation (cell B16)
+   - Post 2016 PUA Transfer to Loan (cell B30)
+   - PUA Withdrawal - Post 2016 (cell B30)
+   - PUA Withdrawal - PostMac (cell B30)
+   - LF8258 Accrued Income (cell B26)
+   - Maturity Amount (cell B34)
+3. Ensure that the field name is updated to ACB Loan Proceeds in each tab
+Expected Results: Field name should be renamed to ACB Loan Proceeds in all specified tabs
+
+Test Case 4:
+Test Case Description: Confirm if new fields are added in ACB Calculation Tab
+Steps to Execute:
+1. Open ISO Tax Calculation Templates in UAT LAN environment
+2. Navigate to ACB Calculation tab
+3. Verify new fields at the end of the form:
+   - Current Cost Excluded (copy the value from C10)
+   - Previous Cost Excluded (scraped from MLIF)
+   - Non-Cumulative NCPI (calculated as Current Cost Excluded - Previous Cost Excluded)
+Expected Results: New fields should be added with the correct values and calculations
+
+Test Case 5:
+Test Case Description: Confirm if Copy function includes Policy # in all relevant tabs
+Steps to Execute:
+1. Open ISO Tax Calculation Templates in UAT LAN environment
+2. Navigate to each of the following tabs and test the Copy function:
+   - ACB Calculation
+   - Gain Calculation
+   - Post 2016 PUA Transfer to Loan
+   - PUA Withdrawal - Post 2016
+   - PUA Withdrawal - PostMac
+   - PUA Withdrawal - PreMac
+   - LF8258 Accrued Income
+   - Maturity Amount
+   - UL Partial Withdrawals
+3. Ensure that the Policy # is included in the copied data
+Expected Results: Policy # should be included in the copied data in all specified tabs
