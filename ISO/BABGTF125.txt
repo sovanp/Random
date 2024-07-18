@@ -1,0 +1,33 @@
+BABGTF-125 User wants to Pull in the ACB Loan Proceeds Field for the PUA Withdrawal - PreMac tab 
+
+User Story : 
+
+Loan field to use ACB Loan Proceeds value in Pre-MacEachen tab 
+
+Target Tab: PUA Withdrawal - PreMac (C26) 
+
+Pre-Mac Policy:  
+- R452874-9 
+- 1852084-2 
+
+In Scope: 
+
+- 'PUA Withdrawal - PreMac' tab 
+
+- 'ACB Loan Proceeds' field 
+
+- Formulas where 'ACB Loan Proceeds' field is referenced. 
+
+Acceptance Criteria: 
+
+- User Inputs the Policy #  on the Application and click on [Retrieve MLIF Data ]  to Pull the data from MLIF Screen. 
+
+- [Retrieve MLIF Data ] must update Cell C26 of the 'PUA Withdrawal - PreMac' tab, currently labelled 'Loan', with the 'ACB Loan Proceeds' information from the MLIF Screen. 
+
+- Cell C26, currently labelled 'Loan', must be updated with the title 'ACB Loan Proceeds' 
+
+- [Retrieve MLIF Data ] Functionality must pull a negative amount, when a Policy #\Key shows a negative amount in the MLIF screen. 
+
+- Formula for 'Allowable W/D without gain'  that include the 'ACB Loan Proceeds' Field must be adjusted to compute with the following logic:  
+	- If the Amount is Zero(0) or a negative amount, then use a Zero(0), otherwise  
+	- If the Amount is greater than Zero(0) or a positive amount in MLIF, then the formula should compute using Current logic in the Application. 

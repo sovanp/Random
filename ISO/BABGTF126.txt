@@ -1,0 +1,39 @@
+BABGTF-126 User wants to Pull in the ACB Loan Proceeds Field from MLIF as a Negative Amount 
+
+User Story : 
+Test Policies with negative ACB Loan Proceeds: 
+- 7069445-3 
+- 8170758-4 
+
+In Scope: 
+
+- 'ACB Loan Proceeds' field for the following tabs: 
+	1. ACB Calculation (B15)  
+	2. Gain Calculation (B16) 
+	3. Post 2016 PUA Transfer to Loan (B30) 
+	4. PUA Withdrawal - Post 2016 (B30) 
+	5. PUA Withdrawal - PostMac (B30) 
+	6. PUA Withdrawal - PreMac (C26) 
+	7. LF8258 Accrued Income (B26) 
+	8. Maturity Amount (B34) 
+
+- Formulas where 'ACB Loan Proceeds' field is referenced in the tabs mentioned above. 
+
+Acceptance Criteria: 
+
+- User Inputs the Policy #  on the Application and click on [Retrieve MLIF Data ]  to Pull the data from MLIF Screen. 
+
+- [Retrieve MLIF Data ] Functionality must pull a negative amount, when a Policy #\Key shows a negative amount in the MLIF screen. 
+
+- Formulas that include the 'ACB Loan Proceeds' Field must be adjusted to compute with the following logic:  
+	- If the Amount is Zero(0) or a negative amount, then use a Zero(0), otherwise  
+	- If the Amount is greater than Zero(0) or a positive amount in MLIF, then the formula should compute using Current logic in the Application. 
+
+- Adjust the Retrieve functionality for the 'ACB Loan Proceeds' Field  for the following tabs: 
+	1. ACB Calculation (B15)  
+	2. Gain Calculation (B16) 
+	3. Post 2016 PUA Transfer to Loan (B30) 
+	4. PUA Withdrawal - Post 2016 (B30) 
+	5. PUA Withdrawal - PostMac (B30) 
+	6. LF8258 Accrued Income (B26) 
+	7. Maturity Amount (B34) 
