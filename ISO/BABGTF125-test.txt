@@ -1,0 +1,96 @@
+Test Cases for BABGTF-126
+Test Case ID #: 1
+Test Case Description: Confirm if [Retrieve MLIF Data] functionality pulls a negative amount for ACB Loan Proceeds for policy 7069445-3
+Business Rules: BABGTF-126
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number 7069445-3
+Click on [Retrieve MLIF Data]
+Verify if ACB Loan Proceeds field displays a negative amount in the specified tabs:
+ACB Calculation (B15)
+Gain Calculation (B16)
+Post 2016 PUA Transfer to Loan (B30)
+PUA Withdrawal - Post 2016 (B30)
+PUA Withdrawal - PostMac (B30)
+PUA Withdrawal - PreMac (C26)
+LF8258 Accrued Income (B26)
+Maturity Amount (B34)
+Policy#/Key: 7069445-3
+Expected Results: ACB Loan Proceeds field should display a negative amount in all specified tabs.
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+Test Case ID #: 2
+Test Case Description: Confirm if [Retrieve MLIF Data] functionality pulls a negative amount for ACB Loan Proceeds for policy 8170758-4
+Business Rules: BABGTF-126
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number 8170758-4
+Click on [Retrieve MLIF Data]
+Verify if ACB Loan Proceeds field displays a negative amount in the specified tabs:
+ACB Calculation (B15)
+Gain Calculation (B16)
+Post 2016 PUA Transfer to Loan (B30)
+PUA Withdrawal - Post 2016 (B30)
+PUA Withdrawal - PostMac (B30)
+PUA Withdrawal - PreMac (C26)
+LF8258 Accrued Income (B26)
+Maturity Amount (B34)
+Policy#/Key: 8170758-4
+Expected Results: ACB Loan Proceeds field should display a negative amount in all specified tabs.
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+Test Case ID #: 3
+Test Case Description: Confirm if formulas are adjusted to compute correctly with negative or zero ACB Loan Proceeds
+Business Rules: BABGTF-126
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number 7069445-3 (or any policy with negative ACB Loan Proceeds)
+Click on [Retrieve MLIF Data]
+Verify if formulas including ACB Loan Proceeds are adjusted with the following logic:
+If the amount is zero or negative, use zero in the calculation
+If the amount is positive, use the current logic
+Repeat steps 2-4 for policy number 8170758-4
+Policy#/Key: 7069445-3, 8170758-4
+Expected Results: Formulas should use zero for calculations if ACB Loan Proceeds is zero or negative; use the current logic if positive.
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+Test Case ID #: 4
+Test Case Description: Confirm if the retrieve functionality adjusts ACB Loan Proceeds field correctly in all relevant tabs
+Business Rules: BABGTF-126
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number 7069445-3
+Click on [Retrieve MLIF Data]
+Verify ACB Loan Proceeds field adjustment in the following tabs:
+ACB Calculation (B15)
+Gain Calculation (B16)
+Post 2016 PUA Transfer to Loan (B30)
+PUA Withdrawal - Post 2016 (B30)
+PUA Withdrawal - PostMac (B30)
+LF8258 Accrued Income (B26)
+Maturity Amount (B34)
+Repeat steps 2-4 for policy number 8170758-4
+Policy#/Key: 7069445-3, 8170758-4
+Expected Results: ACB Loan Proceeds field should be correctly adjusted and display appropriate values in all specified tabs.
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
