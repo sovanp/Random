@@ -1,0 +1,74 @@
+Test Cases for BABGTF-125
+Test Case ID #: 1
+Test Case Description: Confirm if [Retrieve MLIF Data] functionality updates Cell C26 in the 'PUA Withdrawal - PreMac' tab with ACB Loan Proceeds for policy R452874-9
+Business Rules: BABGTF-125
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number R452874-9
+Click on [Retrieve MLIF Data]
+Verify if Cell C26 in the 'PUA Withdrawal - PreMac' tab, currently labelled 'Loan', is updated with ACB Loan Proceeds from MLIF Screen
+Policy#/Key: R452874-9
+Expected Results: Cell C26 should be updated with ACB Loan Proceeds and labelled 'ACB Loan Proceeds'
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+Test Case ID #: 2
+Test Case Description: Confirm if [Retrieve MLIF Data] functionality updates Cell C26 in the 'PUA Withdrawal - PreMac' tab with ACB Loan Proceeds for policy 1852084-2
+Business Rules: BABGTF-125
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number 1852084-2
+Click on [Retrieve MLIF Data]
+Verify if Cell C26 in the 'PUA Withdrawal - PreMac' tab, currently labelled 'Loan', is updated with ACB Loan Proceeds from MLIF Screen
+Policy#/Key: 1852084-2
+Expected Results: Cell C26 should be updated with ACB Loan Proceeds and labelled 'ACB Loan Proceeds'
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+Test Case ID #: 3
+Test Case Description: Confirm if formulas in 'PUA Withdrawal - PreMac' tab are adjusted to compute correctly with negative or zero ACB Loan Proceeds
+Business Rules: BABGTF-125
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number R452874-9 (or any policy with negative ACB Loan Proceeds)
+Click on [Retrieve MLIF Data]
+Verify if formulas including ACB Loan Proceeds are adjusted with the following logic:
+If the amount is zero or negative, use zero in the calculation
+If the amount is positive, use the current logic
+Repeat steps 2-4 for policy number 1852084-2
+Policy#/Key: R452874-9, 1852084-2
+Expected Results: Formulas should use zero for calculations if ACB Loan Proceeds is zero or negative; use the current logic if positive.
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
+
+Test Case ID #: 4
+Test Case Description: Confirm if Cell C26 in 'PUA Withdrawal - PreMac' tab is correctly updated with the title 'ACB Loan Proceeds'
+Business Rules: BABGTF-125
+ISO Tax Calculation Templates: 10.09
+Steps to Execute:
+
+Open ISO Tax Calculation Templates in UAT LAN environment
+Input policy number R452874-9
+Click on [Retrieve MLIF Data]
+Verify if Cell C26 in the 'PUA Withdrawal - PreMac' tab is updated with the title 'ACB Loan Proceeds'
+Repeat steps 2-4 for policy number 1852084-2
+Policy#/Key: R452874-9, 1852084-2
+Expected Results: Cell C26 should be updated with the title 'ACB Loan Proceeds'
+Actual Results (If different than expected results):
+Test Completion Date:
+Pass/Fail:
+Defect # if applicable:
+Comments:
